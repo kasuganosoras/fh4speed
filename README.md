@@ -1,7 +1,11 @@
 # FH4Speed
 Forza Horizon 4 Speedometer for FiveM
 
-![Screenshots](https://i.imgur.com/Z0DuOkV.png)
+[![Screenshots](https://i.imgur.com/Z0DuOkV.png)](https://www.youtube.com/watch?v=e5qshXzDFPA)
+
+## Video
+- Youtube: https://www.youtube.com/watch?v=e5qshXzDFPA
+- Bilibili: https://www.bilibili.com/video/BV1zK4y1t7y9/
 
 ## Installation
 1. Clone or download this repo
