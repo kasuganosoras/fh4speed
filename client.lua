@@ -1,8 +1,14 @@
+--[[ Forza Horizon 4 Speedometer for FiveM ]]--
+--[[ Author: Akkariin | Github: https://github.com/kasuganosoras/fh4speed ]]--
+--[[ If you like this script, please give me a like on the fivem forum, thanks ]]--
+
+local isHide = false
+
 Citizen.CreateThread(function()
 	while true do
 		Wait(1)
 		playerPed = GetPlayerPed(-1)
-		if IsPedInAnyVehicle(playerPed) then -- Check to see if the player is in a car.
+		if IsPedInAnyVehicle(playerPed) then
 		
 			if playerPed and not isHide then
 				
@@ -37,6 +43,20 @@ Citizen.CreateThread(function()
 				else
 					SendNUIMessage({HideHud = true})
 				end
+			end
+		end
+	end
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		Wait(0)
+		if IsControlJustPressed(1, 57) then
+			if isHide then
+				isHide = false
+			else
+				SendNUIMessage({HideHud = true})
+				isHide = true
 			end
 		end
 	end
