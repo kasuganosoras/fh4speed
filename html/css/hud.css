@@ -35,11 +35,14 @@
 #container {
 	display: none;
 }
-#rpmshow {
+#rpmshow, #rpmbg {
 	position: fixed;
 	bottom: 64px;
 	right: 64px;
-	filter: drop-shadow(0px 0px 1px rgba(0,0,0,0.6));
+	filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.1));
+}
+#rpmbg {
+	filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.2));
 }
 .speedcircle {
 	width: 80px;
@@ -47,6 +50,7 @@
 	position: fixed;
 	bottom: 185px;
 	right: 185px;
+	filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.1));
 }
 .geardisplay {
 	text-align: center;
@@ -62,9 +66,11 @@
 	border-radius: 50%;
 	font-style: italic;
 	font-weight: bold;
+	filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.1));
 }
 .geardisplay span {
 	margin-left: -10px;
+	filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.1));
 }
 .speeddisplay {
 	font-size: 117px;
@@ -75,7 +81,7 @@
 	font-style: italic;
 	font-weight: 100;
 	color: #FFF;
-	text-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 .gray {
 	color: rgba(255,255,255,0.5);
