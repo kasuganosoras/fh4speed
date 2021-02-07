@@ -8,7 +8,7 @@ Citizen.CreateThread(function()
 	while true do
 		Wait(0)
 		playerPed = GetPlayerPed(-1)
-		if IsPedInAnyVehicle(playerPed) then
+		if IsPedInAnyVehicle(playerPed) and not isHide then
 		
 			if playerPed and not isHide then
 				
@@ -40,11 +40,15 @@ Citizen.CreateThread(function()
 						PlayerID            = GetPlayerServerId(GetPlayerIndex())
 					})
 					
-				else
-					SendNUIMessage({HideHud = true})
 				end
 			end
+		end
+	end
+	if IsControlJustPressed(1, 57) then
+		if isHide then
+			isHide = false
 		else
+			SendNUIMessage({HideHud = true})
 			isHide = true
 		end
 	end
@@ -52,14 +56,12 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Wait(0)
-		if IsControlJustPressed(1, 57) then
-			if isHide then
-				isHide = false
-			else
-				SendNUIMessage({HideHud = true})
-				isHide = true
-			end
+		Wait(10000)
+		if isHide then
+			isHide = false
+		else
+			SendNUIMessage({HideHud = true})
+			isHide = true
 		end
 	end
 end)
