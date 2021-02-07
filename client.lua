@@ -72,6 +72,9 @@ Citizen.CreateThread(function()
 			else
 				SendNUIMessage({HideHud = true})
 			end
+		else
+			SendNUIMessage({HideHud = true})
+			Wait(100)
 		end
 	end
 end)
