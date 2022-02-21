@@ -32,7 +32,7 @@ end)
 function Tick()
 	local playerPed = GetPlayerPed(-1)
 	local isShouldShowHUD = false
-	if playerPed and IsPedInAnyVehicle(playerPed) and not isHide then
+	if playerPed and IsPedInAnyVehicle(playerPed) then
 		isShouldShowHUD = true
 		local playerCar = GetVehiclePedIsIn(playerPed, false)
 		if playerCar and GetPedInVehicleSeat(playerCar, -1) == playerPed then
