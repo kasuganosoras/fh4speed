@@ -8,19 +8,33 @@ local activeHUD = true
 local carRPM, carSpeed, carGear, carIL, carAcceleration, carHandbrake, carBrakeABS, carLS_r, carLS_o, carLS_h
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(playerData)
+	TriggerEvent('fh4speed:setUnitSpeed', Config.UnitSpeed['unitInit'])
+end)
+
+RegisterNetEvent('fh4speed:setUnitSpeed')
+AddEventHandler('fh4speed:setUnitSpeed',function(unitString)
+	local unit = unitString:lower()
+	if(unit == 'kph') then
+		print("Set Unit To KPH")
+		unit = "KPH"
+	elseif (unit == 'mph') then
+		print("Set Unit To MPH")
+		unit = "MPH"
+	else 
+		print("Should Select Unit KPH Or MPH")
+		return
+	end
 	SendNUIMessage({
 		Type = 'updateUnitSpeed',
-		UnitSpeed = Config.UnitSpeed
+		UnitSpeed = unit
 	})
-
-	if(Config.ToggleHUD["canToggleHUD"]) then
-		print("register commands")
-		RegisterCommand("fh4speed", function(_, args)	
-			ToggleDisplay()
-		end, false)
-		RegisterKeyMapping('fh4speed', 'Enable or disable speedometer', 'keyboard', Config.ToggleHUD['keybindToggle'])
-	end
 end)
+
+RegisterNetEvent('fh4speed:toggleHUD')
+AddEventHandler('fh4speed:toggleHUD',function()
+	ToggleDisplay()
+end)
+
 CreateThread(function()
 	while true do
 		Wait(0)
@@ -32,7 +46,7 @@ end)
 function Tick()
 	local playerPed = GetPlayerPed(-1)
 	local isShouldShowHUD = false
-	if playerPed and IsPedInAnyVehicle(playerPed) and not isHide then
+	if playerPed and IsPedInAnyVehicle(playerPed) then
 		isShouldShowHUD = true
 		local playerCar = GetVehiclePedIsIn(playerPed, false)
 		if playerCar and GetPedInVehicleSeat(playerCar, -1) == playerPed then

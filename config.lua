@@ -1,6 +1,9 @@
 Config = {}
 Config.ToggleHUD= {
     canToggleHUD = true,
-    keybindToggle = 'f10'
+    commandName = 'fh4speed'
 }
-Config.UnitSpeed = "MPH" -- 2 units 1.KPH 2.MPH
+Config.UnitSpeed ={
+    commandName = 'fh4unit', 
+    unitInit = "MPH" -- KPH,MPH
+}

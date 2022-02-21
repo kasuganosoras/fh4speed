@@ -5,6 +5,8 @@ description "Forza Horizon 4 Speedometer"
 author "Akkariin"
 url "https://www.zerodream.net/"
 
+shared_script '@es_extended/imports.lua'
+
 ui_page "html/hud.html"
 
 files {
@@ -29,3 +31,7 @@ client_scripts {
 	"config.lua",
 	"client.lua"
 } 
+server_scripts {
+	"config.lua",
+	"server.lua"
+}
