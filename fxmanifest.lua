@@ -1,5 +1,5 @@
-fx_version 'bodacious'
-games { 'gta5' }
+fx_version 'cerulean'
+game 'gta5'
 
 description "Forza Horizon 4 Speedometer"
 author "Akkariin"
@@ -25,4 +25,7 @@ files {
 	"html/images/speedcircle.png",
 }
 
-client_script "client.lua"
+client_scripts {
+	"config.lua",
+	"client.lua"
+} 
