@@ -7,6 +7,9 @@ Forza Horizon 4 Speedometer for FiveM
 - Youtube: https://www.youtube.com/watch?v=e5qshXzDFPA
 - Bilibili: https://www.bilibili.com/video/BV1zK4y1t7y9/
 
+## Features
+- Command: Toggle HUD, Set Unit Speed KPH, MPH
+
 ## Installation
 1. Clone or download this repo
 2. Copy the `fh4speed` folder to your server resources folder
