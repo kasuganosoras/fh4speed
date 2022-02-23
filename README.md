@@ -9,6 +9,8 @@ Forza Horizon 4 Speedometer for FiveM
 
 ## Features
 - Command: Toggle HUD, Set Unit Speed KPH, MPH
+1. cmd toggle HUD == /fh4speed
+2. cmd set unit display KPH,MPH == /fh4unit unit_speed such kph and mph
 
 ## Installation
 1. Clone or download this repo
