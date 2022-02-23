@@ -2,26 +2,15 @@
 --[[ Author: Akkariin | Github: https://github.com/kasuganosoras/fh4speed ]]--
 --[[ If you like this script, please give me a like on the fivem forum, thanks ]]--
 
-local isShowHUD = false
-local activeHUD = true
+local isShowHUD   = false
+local activeHUD   = true
+local initialized = false
+local usingMetric = false
 
 local carRPM, carSpeed, carGear, carIL, carAcceleration, carHandbrake, carBrakeABS, carLS_r, carLS_o, carLS_h
-RegisterNetEvent('esx:playerLoaded')
-AddEventHandler('esx:playerLoaded', function(playerData)
-	SendNUIMessage({
-		Type = 'updateUnitSpeed',
-		UnitSpeed = Config.UnitSpeed
-	})
 
-	if(Config.ToggleHUD["canToggleHUD"]) then
-		print("register commands")
-		RegisterCommand("fh4speed", function(_, args)	
-			ToggleDisplay()
-		end, false)
-		RegisterKeyMapping('fh4speed', 'Enable or disable speedometer', 'keyboard', Config.ToggleHUD['keybindToggle'])
-	end
-end)
 CreateThread(function()
+	InitializeHUD()
 	while true do
 		Wait(0)
 		if(activeHUD) then
@@ -29,6 +18,7 @@ CreateThread(function()
 		end
 	end
 end)
+
 function Tick()
 	local playerPed = GetPlayerPed(-1)
 	local isShouldShowHUD = false
@@ -63,7 +53,7 @@ function Tick()
 				carLS_o         = NcarLS_o
 				carLS_h         = NcarLS_h
 				SendNUIMessage({
-					Type                = "update",
+					Type                   = "update",
 					CurrentCarRPM          = carRPM,
 					CurrentCarGear         = carGear,
 					CurrentCarSpeed        = carSpeed,
@@ -80,6 +70,15 @@ function Tick()
 	end
 	if(isShouldShowHUD ~= isShowHUD) then
 		isShowHUD = isShouldShowHUD
+		RefreshHUD()
+	end
+	if(usingMetric ~= ShouldUseMetricMeasurements()) then
+		usingMetric = ShouldUseMetricMeasurements()
+		unitText = usingMetric and "KPH" or "MPH"
+		SendNUIMessage({
+			Type = 'updateUnitSpeed',
+			UnitSpeed = unitText
+		})
 		RefreshHUD()
 	end
 end
@@ -102,4 +101,21 @@ function RefreshHUD()
 		Type = "toggleHUD",
 		isShowHUD = isShowHUD,
 	})
+end
+
+function InitializeHUD()
+	if not initialized then
+		SendNUIMessage({
+			Type = 'updateUnitSpeed',
+			UnitSpeed = Config.UsingMPH and "MPH" or "KPH",
+		})
+		if Config.ToggleHUD.canToggleHUD then
+			print("register commands")
+			RegisterCommand("fh4speed", function(_, args)	
+				ToggleDisplay()
+			end, false)
+			RegisterKeyMapping('fh4speed', 'Enable or disable speedometer', 'keyboard', Config.ToggleHUD.keybindToggle)
+		end
+		initialized = true
+	end
 end
